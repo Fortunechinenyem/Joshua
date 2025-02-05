@@ -8,9 +8,7 @@ import {
   FaHandshake,
   FaCar,
   FaCogs,
-  FaFacebook,
-  FaTwitter,
-  FaLinkedin,
+  FaQuoteLeft,
 } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
@@ -37,6 +35,62 @@ export default function Home() {
       title: "Fleet Management",
       description:
         "Optimizing business fleets for cost-efficiency and performance.",
+    },
+  ];
+
+  const testimonials = [
+    {
+      quote:
+        "Joshua's expertise in fleet management saved our company thousands of dollars. Highly recommended!",
+      name: "John Doe",
+      company: "ABC Logistics",
+    },
+    {
+      quote:
+        "The CNG conversion service was seamless, and the team was professional. Great experience!",
+      name: "Jane Smith",
+      company: "EcoTransit",
+    },
+    {
+      quote:
+        "Joshua provided invaluable advice on vehicle procurement. His insights were spot on!",
+      name: "Michael Brown",
+      company: "Urban Motors",
+    },
+  ];
+
+  const stats = [
+    { number: "6+", label: "Years of Experience" },
+    { number: "100+", label: "Vehicles Managed" },
+    { number: "N10M+", label: "Saved for Clients" },
+  ];
+  const faqs = [
+    {
+      question: "What is CNG conversion?",
+      answer:
+        "CNG conversion involves modifying a vehicle to run on compressed natural gas, which is a more affordable and eco-friendly fuel alternative.",
+    },
+    {
+      question: "How do I book a consultation?",
+      answer:
+        "You can book a consultation through the contact page on this website.",
+    },
+  ];
+  const blogPosts = [
+    {
+      title: "Top 5 Benefits of CNG Conversion",
+      excerpt: "Discover why CNG is the future of fuel efficiency.",
+      link: "/blog/cng-benefits",
+    },
+    {
+      title: "How to Optimize Fleet Management",
+      excerpt: "Learn strategies to reduce costs and improve performance.",
+      link: "/blog/fleet-optimization",
+    },
+    {
+      title: "Choosing the Right Vehicle for Your Business",
+      excerpt: "A guide to making informed decisions for your fleet.",
+      link: "/blog/vehicle-selection",
     },
   ];
 
@@ -106,43 +160,69 @@ export default function Home() {
             </Link>
           </div>
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full md:w-1/2 flex justify-center mt-10 md:mt-0"
-        >
-          <Image
-            src="/images/joshua.JPG"
-            alt="Joshua"
-            width={400}
-            height={400}
-            className="w-80 h-80 md:w-96 md:h-96 rounded-lg shadow-lg object-cover transform hover:scale-105 transition-all duration-500"
-          />
-        </motion.div>
       </section>
-
-      <section className="py-16 px-6 md:px-12 bg-gray-100 dark:bg-gray-800 text-center">
+      <section className="py-16 px-6 md:px-12 bg-white dark:bg-gray-900 text-center">
         <h2 className="text-3xl font-bold text-[#1f1f1f] dark:text-white mb-8">
-          My Services
+          What My Clients Say
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {expertiseList.map((item, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="flex flex-col items-center space-y-4 p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              className="flex flex-col items-center space-y-4 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
-              {item.icon}
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
-                {item.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-                {item.description}
+              <FaQuoteLeft className="text-4xl text-[#5a4ac8]" />
+              <p className="text-gray-600 dark:text-gray-300 italic">
+                "{testimonial.quote}"
+              </p>
+              <p className="text-gray-800 dark:text-white font-semibold">
+                {testimonial.name}
+              </p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                {testimonial.company}
               </p>
             </motion.div>
+          ))}
+        </div>
+      </section>
+      <section className="py-16 px-6 md:px-12 bg-gray-800 text-white text-center">
+        <h2 className="text-3xl font-bold mb-8">By the Numbers</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="space-y-4 p-6 bg-gray-700 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
+              <p className="text-5xl font-bold">{stat.number}</p>
+              <p className="text-lg">{stat.label}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-16 px-6 md:px-12 bg-gray-200 dark:bg-gray-900 text-center">
+        <h2 className="text-3xl font-bold text-[#1f1f1f] dark:text-white mb-8">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-6">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md"
+            >
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {faq.question}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mt-2">
+                {faq.answer}
+              </p>
+            </div>
           ))}
         </div>
       </section>
@@ -150,33 +230,67 @@ export default function Home() {
       <section className="bg-gray-400 text-gray text-center py-16">
         <FuelSavingsCalculator />
       </section>
-
-      <section className="bg-[#041338] text-white text-center py-16">
+      <section className="py-16 px-6 md:px-12 bg-gray-100 dark:bg-gray-900 text-center">
+        <h2 className="text-3xl font-bold text-[#1f1f1f] dark:text-white mb-8">
+          Latest Insights
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {blogPosts.map((post, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="flex flex-col items-start space-y-4 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                {post.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
+                {post.excerpt}
+              </p>
+              <Link
+                href={post.link}
+                className="text-[#5a4ac8] hover:text-[#7a6ae8] transition-all duration-300"
+              >
+                Read More →
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+      <section className="py-16 px-6 md:px-12 bg-[#5a4ac8] text-white text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="space-y-6"
         >
-          <h2 className="text-3xl font-bold">Get in Touch</h2>
+          <h2 className="text-3xl font-bold">Ready to Transform Your Fleet?</h2>
           <p className="text-lg">
-            Ready to make informed auto decisions? Reach out today.
+            Contact me today for a free consultation and take the first step
+            towards smarter automotive decisions.
           </p>
           <div className="mt-7 flex justify-center space-x-4">
             <Link
               href="/contact"
-              className="px-6 py-3 bg-white text-[#7a6ae8] rounded-lg shadow-lg hover:bg-[#5a4ac8] hover:text-white transition-all duration-300"
+              className="px-6 py-3 bg-white text-[#5a4ac8] rounded-lg shadow-lg hover:bg-[#7a6ae8] hover:text-white transition-all duration-300"
             >
-              Let’s Talk
+              Schedule a Call
             </Link>
-          </div>
-          <div className="flex justify-center space-x-6 text-lg">
-            <FaFacebook className="hover:text-gray-300 cursor-pointer" />
-            <FaTwitter className="hover:text-gray-300 cursor-pointer" />
-            <FaLinkedin className="hover:text-gray-300 cursor-pointer" />
           </div>
         </motion.div>
       </section>
+
+      {showButton && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 p-4 bg-[#5a4ac8] text-white rounded-full shadow-lg hover:bg-[#24803a] transition-all duration-300 animate-bounce"
+          aria-label="Back to Top"
+        >
+          <FaArrowUp className="text-xl" />
+        </button>
+      )}
     </Layout>
   );
 }

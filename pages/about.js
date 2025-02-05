@@ -57,7 +57,6 @@ export default function About() {
 
   return (
     <Layout>
-      {/* Hero Section */}
       <section
         className="relative h-[500px] flex items-center justify-center bg-fixed bg-cover bg-center"
         style={{ backgroundImage: "url('/images/joshua.JPG')" }}
@@ -96,7 +95,22 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission Section */}
+      <section className="py-16 px-6 md:px-12 bg-gray-100 dark:bg-gray-900 text-center">
+        <h2 className="text-3xl font-bold text-[#1f1f1f] dark:text-white mb-8">
+          Watch My Story
+        </h2>
+        <div className="flex justify-center">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/your-video-id"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="rounded-lg shadow-lg"
+          ></iframe>
+        </div>
+      </section>
       <section className="mt-20 text-center">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}

@@ -142,6 +142,27 @@ export default function Contact() {
           </div>
         </div>
       </section>
+      <section className="py-16 px-6 md:px-12 bg-white dark:bg-gray-800 text-center">
+        <h2 className="text-3xl font-bold text-[#1f1f1f] dark:text-white mb-8">
+          Stay Updated
+        </h2>
+        <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+          Subscribe to my newsletter for the latest tips and insights.
+        </p>
+        <form className="flex justify-center">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#5a4ac8]"
+          />
+          <button
+            type="submit"
+            className="px-6 py-3 bg-[#5a4ac8] text-white rounded-r-lg hover:bg-[#7a6ae8] transition-all duration-300"
+          >
+            Subscribe
+          </button>
+        </form>
+      </section>
     </Layout>
   );
 }
