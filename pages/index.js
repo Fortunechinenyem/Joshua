@@ -3,7 +3,15 @@ import { useEffect, useState } from "react";
 import Layout from "@/app/components/Layout";
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowUp, FaHandshake, FaCar, FaCogs } from "react-icons/fa";
+import {
+  FaArrowUp,
+  FaHandshake,
+  FaCar,
+  FaCogs,
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+} from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import FuelSavingsCalculator from "@/app/components/FuelSavingsCalculator";
@@ -54,7 +62,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <section className="bg-gray-800 flex flex-col md:flex-row items-center justify-center min-h-screen text-center md:text-left px-6">
+      <section className="relative bg-gradient-to-r from-gray-800 via-gray-900 to-black flex flex-col md:flex-row items-center justify-center min-h-screen text-center md:text-left px-6 py-20">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -64,7 +72,7 @@ export default function Home() {
           <h1 className="text-5xl md:text-6xl font-extrabold text-white">
             Hi, I'm <span className="text-gray-200">Joshua</span>
           </h1>
-          <p className="text-lg text-white">
+          <p className="text-lg text-gray-300">
             <TypeAnimation
               sequence={[
                 "Entrepreneur",
@@ -79,16 +87,20 @@ export default function Home() {
               repeat={Infinity}
             />
           </p>
+          <p className="text-gray-400 text-lg">
+            Helping you make the best automotive decisions with expertise and
+            precision.
+          </p>
           <div className="mt-6 flex justify-center md:justify-start space-x-4">
             <Link
               href="/services"
-              className="px-6 py-3 bg-[#041338] text-white rounded-lg shadow-lg hover:bg-[#5a4ac8] transition-all duration-300"
+              className="px-6 py-3 bg-[#5a4ac8] text-white rounded-lg shadow-lg hover:bg-[#7a6ae8] transition-all duration-300"
             >
               Explore Services
             </Link>
             <Link
               href="/contact"
-              className="px-6 py-3 border border-[#041338] text-white rounded-lg hover:bg-[#7a6ae8] hover:text-white transition-all duration-300"
+              className="px-6 py-3 border border-white text-white rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300"
             >
               Get in Touch
             </Link>
@@ -134,6 +146,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+
       <section className="bg-gray-400 text-gray text-center py-16">
         <FuelSavingsCalculator />
       </section>
@@ -149,7 +162,7 @@ export default function Home() {
           <p className="text-lg">
             Ready to make informed auto decisions? Reach out today.
           </p>
-          <div className="mt-7">
+          <div className="mt-7 flex justify-center space-x-4">
             <Link
               href="/contact"
               className="px-6 py-3 bg-white text-[#7a6ae8] rounded-lg shadow-lg hover:bg-[#5a4ac8] hover:text-white transition-all duration-300"
@@ -157,21 +170,13 @@ export default function Home() {
               Let’s Talk
             </Link>
           </div>
+          <div className="flex justify-center space-x-6 text-lg">
+            <FaFacebook className="hover:text-gray-300 cursor-pointer" />
+            <FaTwitter className="hover:text-gray-300 cursor-pointer" />
+            <FaLinkedin className="hover:text-gray-300 cursor-pointer" />
+          </div>
         </motion.div>
       </section>
-
-      {showButton && (
-        <motion.button
-          onClick={scrollToTop}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed bottom-8 right-8 p-4 bg-[#041338] text-white rounded-full shadow-lg hover:bg-[#5a4ac8] transition-all duration-300"
-          aria-label="Back to Top"
-        >
-          <FaArrowUp className="text-xl" />
-        </motion.button>
-      )}
     </Layout>
   );
 }

@@ -67,7 +67,7 @@ const Navbar = () => {
         >
           <X size={28} />
         </button>
-        <nav className="mt-10 flex flex-col space-y-6 text-lg font-medium">
+        <nav className="mt-10  flex flex-col space-y-6 text-lg font-medium">
           {["about", "work", "services", "contact"].map((item) => (
             <Link
               key={item}
