@@ -157,7 +157,7 @@ export default function Contact() {
           />
           <button
             type="submit"
-            className="px-6 py-3 bg-[#5a4ac8] text-white rounded-r-lg hover:bg-[#7a6ae8] transition-all duration-300"
+            className="px-6 py-3 bg-[#041338] text-white rounded-r-lg hover:bg-[#7a6ae8] transition-all duration-300"
           >
             Subscribe
           </button>
