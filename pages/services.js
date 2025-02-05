@@ -1,9 +1,35 @@
 import Layout from "@/app/components/Layout";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-
+import { useEffect, useState } from "react";
 import { FaArrowUp, FaCar, FaCogs, FaGasPump } from "react-icons/fa";
 import { motion } from "framer-motion";
+
+const services = [
+  {
+    icon: <FaCar className="text-4xl text-[#041338]" />,
+    title: "Auto Consulting",
+    description:
+      "Expert guidance on vehicle selection, valuation, and procurement. Whether you're buying your first car or expanding your fleet, I provide tailored advice to meet your needs.",
+    linkText: "Learn More",
+    link: "/contact",
+  },
+  {
+    icon: <FaGasPump className="text-4xl text-[#041338]" />,
+    title: "CNG Conversion",
+    description:
+      "Certified installations and advice on CNG adoption for fuel efficiency. Reduce costs and environmental impact with professionally executed CNG conversions.",
+    linkText: "Get Started",
+    link: "/contact",
+  },
+  {
+    icon: <FaCogs className="text-4xl text-[#041338]" />,
+    title: "Fleet Management",
+    description:
+      "Optimizing business fleets for cost-efficiency and performance. From maintenance schedules to route optimization, I help you maximize your fleet's potential.",
+    linkText: "Optimize Now",
+    link: "/contact",
+  },
+];
 
 const pricingPlans = [
   {
@@ -42,41 +68,13 @@ const pricingPlans = [
 ];
 
 export default function Services() {
-  const [consultingRate, setConsultingRate] = useState(100);
-  const [isClient, setIsClient] = useState(false);
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
-    };
-
+    const handleScroll = () => setShowButton(window.scrollY > 300);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  const handleSliderChange = (value) => {
-    setConsultingRate(value);
-  };
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null;
-  }
 
   return (
     <Layout>
@@ -91,210 +89,81 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="mt-20 px-4">
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
+      <section className="mt-20 px-4 grid md:grid-cols-3 gap-6">
+        {services.map((service, index) => (
           <motion.div
+            key={index}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
             className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6"
           >
-            <div className="flex justify-center">
-              <FaCar className="text-4xl text-[#041338]" />
-            </div>
+            <div className="flex justify-center">{service.icon}</div>
             <h3 className="text-2xl font-semibold text-center dark:text-white mt-4">
-              Auto Consulting
+              {service.title}
             </h3>
             <p className="text-center text-gray-600 dark:text-gray-300 mt-4">
-              Expert guidance on vehicle selection, valuation, and procurement.
-              Whether you're buying your first car or expanding your fleet, I
-              provide tailored advice to meet your needs.
+              {service.description}
             </p>
             <div className="mt-6 text-center">
               <Link
-                href="/contact"
-                className="mt-6 inline-block px-5 py-2 text-sm sm:text-base bg-[#041338] text-white rounded-md shadow-md hover:bg-[#5a4ac8] transition-all duration-300 max-w-[180px] w-full"
+                href={service.link}
+                className="px-5 py-2 bg-[#041338] text-white rounded-md shadow-md hover:bg-[#5a4ac8] transition-all duration-300"
               >
-                Learn More
+                {service.linkText}
               </Link>
             </div>
           </motion.div>
+        ))}
+      </section>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6"
-          >
-            <div className="flex justify-center">
-              <FaGasPump className="text-4xl text-[#041338]" />
-            </div>
-            <h3 className="text-2xl font-semibold text-center dark:text-white mt-4">
-              CNG Conversion
-            </h3>
-            <p className="text-center text-gray-600 dark:text-gray-300 mt-4">
-              Certified installations and advice on CNG adoption for fuel
-              efficiency. Reduce costs and environmental impact with
-              professionally executed CNG conversions.
-            </p>
-            <div className="mt-6 text-center">
-              <Link
-                href="/contact"
-                className="mt-6 inline-block px-5 py-2 text-sm sm:text-base bg-[#041338] text-white rounded-md shadow-md hover:bg-[#5a4ac8] transition-all duration-300 max-w-[180px] w-full"
-              >
-                Get Started
-              </Link>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6"
-          >
-            <div className="flex justify-center">
-              <FaCogs className="text-4xl text-[#041338]" />
-            </div>
-            <h3 className="text-2xl font-semibold text-center dark:text-white mt-4">
-              Fleet Management
-            </h3>
-            <p className="text-center text-gray-600 dark:text-gray-300 mt-4">
-              Optimizing business fleets for cost-efficiency and performance.
-              From maintenance schedules to route optimization, I help you
-              maximize your fleet's potential.
-            </p>
-            <div className="mt-6 text-center">
-              <Link
-                href="/contact"
-                className="mt-6 inline-block px-5 py-2 text-sm sm:text-base bg-[#041338] text-white rounded-md shadow-md hover:bg-[#5a4ac8] transition-all duration-300 max-w-[180px] w-full"
-              >
-                Optimize Now
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-
-        <section className="mt-20 text-center">
-          <h2 className="text-3xl font-bold dark:text-white">Pricing Plans</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
-            Choose a plan that suits your needs and budget.
-          </p>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pricingPlans.map((plan, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6"
-              >
-                <h3 className="text-2xl font-semibold text-center dark:text-white">
-                  {plan.title}
-                </h3>
-                <p className="text-4xl font-bold text-[#041338] text-center mt-4">
-                  {plan.price}
-                </p>
-                <ul className="mt-6 space-y-2">
-                  {plan.features.map((feature, i) => (
-                    <li
-                      key={i}
-                      className="text-gray-600 dark:text-gray-300 flex items-center"
-                    >
-                      <span className="mr-2">✔️</span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6 text-center">
-                  <button className="px-6 py-3 bg-[#041338] text-white rounded-lg hover:bg-[#5a4ac8] transition-all duration-300">
-                    Choose Plan
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-20 text-center">
-          <h2 className="text-3xl font-bold dark:text-white">
-            What People Are Saying
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
-            Hear from those who have benefited from my services.
-          </p>
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            {[
-              {
-                id: 1,
-                name: "John Doe",
-                role: "Business Owner",
-                testimonial:
-                  "Joshua's fleet management solutions transformed my business. His expertise is unmatched!",
-              },
-              {
-                id: 2,
-                name: "Jane Smith",
-                role: "CNG Conversion Client",
-                testimonial:
-                  "The CNG conversion process was seamless, and I’m already seeing savings on fuel costs. Highly recommend Joshua!",
-              },
-              {
-                id: 3,
-                name: "Mike Johnson",
-                role: "Auto Consulting Client",
-                testimonial:
-                  "Joshua helped me find the perfect vehicle for my needs. His advice was spot on and saved me time and money.",
-              },
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6"
-              >
-                <p className="text-gray-600 dark:text-gray-300 italic">
-                  "{testimonial.testimonial}"
-                </p>
-                <p className="mt-4 font-semibold text-gray-800 dark:text-white">
-                  {testimonial.name}{" "}
-                  <span className="text-gray-500">- {testimonial.role}</span>
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-20 py-16 bg-[#041338] text-white text-center">
-          <h2 className="text-3xl font-bold">Ready to Get Started?</h2>
-          <p className="text-lg mt-4">
-            Let’s work together to achieve your goals. Contact me today!
-          </p>
-          <div className="mt-6">
-            <Link
-              href="/contact"
-              className="px-6 py-3 bg-white text-[#7a6ae8] rounded-lg hover:bg-[#5a4ac8] hover:text-white transition-all duration-300"
+      <section className="mt-20 text-center">
+        <h2 className="text-3xl font-bold dark:text-white">Pricing Plans</h2>
+        <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
+          Choose a plan that suits your needs and budget.
+        </p>
+        <div className="mt-12 grid md:grid-cols-3 gap-8">
+          {pricingPlans.map((plan, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6"
             >
-              Contact Me
-            </Link>
-          </div>
-        </section>
+              <h3 className="text-2xl font-semibold text-center dark:text-white">
+                {plan.title}
+              </h3>
+              <p className="text-4xl font-bold text-[#041338] text-center mt-4">
+                {plan.price}
+              </p>
+              <ul className="mt-6 space-y-2">
+                {plan.features.map((feature, i) => (
+                  <li
+                    key={i}
+                    className="text-gray-600 dark:text-gray-300 flex items-center"
+                  >
+                    ✔️ {feature}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 text-center">
+                <button className="px-6 py-3 bg-[#041338] text-white rounded-lg hover:bg-[#5a4ac8] transition-all duration-300">
+                  Choose Plan
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {showButton && (
-        <div className="group fixed bottom-8 right-8">
-          <button
-            onClick={scrollToTop}
-            className="p-4 bg-[#041338] text-white rounded-full shadow-lg hover:bg-[#5a4ac8] transition-all duration-300"
-            aria-label="Back to Top"
-          >
-            <FaArrowUp className="text-xl" />
-          </button>
-          <div className="absolute bottom-14 right-0 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Back to Top
-          </div>
-        </div>
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-8 right-8 p-3 bg-[#041338] text-white rounded-full shadow-md hover:bg-[#5a4ac8] transition-all duration-300"
+        >
+          <FaArrowUp className="text-lg" />
+        </button>
       )}
     </Layout>
   );

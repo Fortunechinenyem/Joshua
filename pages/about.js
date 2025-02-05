@@ -210,7 +210,6 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* Scroll to Top Button */}
       <AnimatePresence>
         {showButton && (
           <motion.button
